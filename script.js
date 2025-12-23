@@ -1,23 +1,71 @@
-  function addNote() {
+  async function loadNotes() {
+    try {
+      const response = await fetch('load_notes.php');
+      const notes = await response.json();
+      const notesContainer = document.getElementById('notes');
+      notesContainer.innerHTML = ''; // Clear existing notes
+      notes.forEach(note => {
+        const noteBox = document.createElement('div');
+        noteBox.className = 'note';
+        noteBox.dataset.id = note.id; // Store ID for potential delete
+
+        const p = document.createElement('p');
+        p.textContent = note.content;
+        noteBox.appendChild(p);
+
+        const del = document.createElement('button');
+        del.textContent = 'Delete';
+        del.style.marginTop = '5px';
+        del.onclick = () => deleteNote(note.id, noteBox);
+        noteBox.appendChild(del);
+
+        notesContainer.appendChild(noteBox);
+      });
+    } catch (error) {
+      console.error('Error loading notes:', error);
+    }
+  }
+
+  async function addNote() {
     const text = document.getElementById('textInput').value;
     if (text.trim() === '') return;
 
-    const noteBox = document.createElement('div');
-    noteBox.className = 'note';
+    try {
+      const response = await fetch('save_note.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          'content': text
+        })
+      });
+      const result = await response.text();
+      console.log(result); // Log success or error
+      document.getElementById('textInput').value = '';
+      loadNotes(); // Reload notes after adding
+    } catch (error) {
+      console.error('Error saving note:', error);
+    }
+  }
 
-    const p = document.createElement('p');
-    p.textContent = text;
-    noteBox.appendChild(p);
-
-    const del = document.createElement('button');
-    del.textContent = 'Șterge';
-    del.style.marginTop = '5px';
-    del.onclick = () => noteBox.remove();
-    noteBox.appendChild(del);
-
-    document.getElementById('notes').appendChild(noteBox);
-
-    document.getElementById('textInput').value = '';
+  async function deleteNote(id, noteBox) {
+    try {
+      const response = await fetch('delete_note.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          'id': id
+        })
+      });
+      const result = await response.text();
+      console.log(result);
+      noteBox.remove(); // Remove from DOM
+    } catch (error) {
+      console.error('Error deleting note:', error);
+    }
   }
 
   function addFile() {

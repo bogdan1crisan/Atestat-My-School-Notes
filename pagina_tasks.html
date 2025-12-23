@@ -11,15 +11,15 @@
 
 <header> <h2>MY TASKS</h2> </header>
 
-<body>
+<body onload="loadNotes()">
     <div class="element">
-        <h2>Adaugă o notiță</h2>
-        <input id="textInput" type="text" placeholder="Scrie aici...">
-        <button onclick="addNote()">Trimite</button>
+        <h2>Add a task</h2>
+        <input id="textInput" type="text" placeholder="Write here...">
+        <button onclick="addNote()">Submit</button>
     </div>
     
     <div class="element">
-        <h2>Notițe salvate</h2>
+        <h2>Current tasks</h2>
         <div id="notes"></div>
     </div>  
     
