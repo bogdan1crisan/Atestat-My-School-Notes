@@ -1,7 +1,12 @@
   async function loadNotes() {
     try {
       const response = await fetch('load_notes.php');
-      const notes = await response.json();
+      const data = await response.json();
+      if (data.error) {
+        console.error('Error loading notes:', data.error);
+        return;
+      }
+      const notes = data;
       const notesContainer = document.getElementById('notes');
       notesContainer.innerHTML = ''; // Clear existing notes
       notes.forEach(note => {
@@ -40,13 +45,18 @@
           'content': text
         })
       });
-      const result = await response.text();
-      console.log(result); // Log success or error
-      document.getElementById('textInput').value = '';
-      loadNotes(); // Reload notes after adding
+      const result = await response.json();
+      if (result.error) {
+        console.error('Error saving note:', result.error);
+      } else {
+        console.log(result.success);
+        document.getElementById('textInput').value = '';
+        loadNotes(); // Reload notes after adding
+      }
     } catch (error) {
       console.error('Error saving note:', error);
     }
+    location.reload();
   }
 
   async function deleteNote(id, noteBox) {
@@ -60,12 +70,17 @@
           'id': id
         })
       });
-      const result = await response.text();
-      console.log(result);
-      noteBox.remove(); // Remove from DOM
+      const result = await response.json();
+      if (result.error) {
+        console.error('Error deleting note:', result.error);
+      } else {
+        console.log(result.success);
+        noteBox.remove(); // Remove from DOM
+      }
     } catch (error) {
       console.error('Error deleting note:', error);
     }
+    location.reload();
   }
 
   function addFile() {
