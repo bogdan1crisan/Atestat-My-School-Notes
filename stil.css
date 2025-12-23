@@ -1,0 +1,58 @@
+header
+  {
+    font-family: Arial, sans-serif;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    background: #ffffff;
+  }
+
+  body 
+  {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #ffffff;
+  }
+
+  .element 
+  {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  input 
+  {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button 
+  {
+    padding: 8px 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .note 
+  {
+    background: #e7e7e7;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
