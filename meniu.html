@@ -8,7 +8,7 @@
   <style>
     body 
     {
-        background: #272324;
+        background: #1F1C1C;
         font-family: Arial, sans-serif;
         text-align: center;
         display: flex;
@@ -21,6 +21,9 @@
         background: #6e1829;
         /*verde #00674f*/
         /*rgb(110, 24, 41)*/
+        box-shadow:
+          inset 5px 5px 10px rgba(255,255,255,0.2),
+          inset -5px -5px 10px rgba(0, 0, 0, 0.8);
         color: white;
         border: none;
         border-radius: 20px;
@@ -29,9 +32,12 @@
         transition: all 0.5s ease;
     }
     button:hover {
-        background: #272324;
-        box-shadow: 0 0 35px #a3243d;
-        transform: scale(1.1);
+      box-shadow:
+        inset -5px -5px 10px rgba(255,255,255,0.1),
+        inset 5px 5px 10px rgba(0,0,0,0.9);
+        background: 272324;
+        /*box-shadow: 0 0 35px #a3243d;*/
+        transform: scale(0.95);
     }
     h1
     {
