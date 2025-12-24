@@ -1,25 +1,21 @@
 <?php
-header('Content-Type: application/json');
 $servername = "localhost";
-$username = "acrisan2"; // Change to your DB username
-$password = "40671"; // Change to your DB password
-$dbname = "acrisan2"; // Change to your DB name
+$username = "acrisan2";
+$password = "40671";
+$dbname = "acrisan2";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
-    echo json_encode(['error' => 'Connection failed: ' . $conn->connect_error]);
+    echo "error: Connection failed: " . $conn->connect_error;
     exit;
 }
 
-// Fetch notes
 $sql = "SELECT id, content FROM notes ORDER BY created_at DESC";
 $result = $conn->query($sql);
 
 if (!$result) {
-    echo json_encode(['error' => 'Query failed: ' . $conn->error]);
+    echo "error: Query failed: " . $conn->error;
     exit;
 }
 
@@ -30,7 +26,9 @@ if ($result->num_rows > 0) {
     }
 }
 
-echo json_encode($notes);
+foreach ($notes as $note) {
+    echo "<div class='note' data-id='{$note['id']}'><p>{$note['content']}</p><button onclick='deleteNote({$note['id']}, this.parentElement)'>Delete</button></div>";
+}
 
 $conn->close();
 ?>

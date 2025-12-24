@@ -8,23 +8,35 @@
   <style>
     body 
     {
+        background: #272324;
         font-family: Arial, sans-serif;
         text-align: center;
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-        justify-content: center;
-        background: #ffffff;
+        justify-content: flex-start;
     }
     button 
     {
-        padding: 8px 12px;
-        background: #4CAF50;
+        padding: 50px 90px;
+        background: rgb(110, 24, 41);
+        /*verde #00674f*/
+        /*rgb(110, 24, 41)*/
         color: white;
         border: none;
-        border-radius: 5px;
+        border-radius: 20px;
         cursor: pointer;
+        font-size: 30px;
+        transition: all 0.5s ease;
+    }
+    button:hover {
+        background: #272324;
+        box-shadow: 0 0 35px rgb(163, 36, 61);
+        transform: scale(1.1);
+    }
+    h1
+    {
+        color: white;
+        font-size: 50px;
     }
   </style>
 </head>
@@ -33,7 +45,9 @@
 
 <body>
 <h1>My School Notes</h1>
+<br> <br>
 <a href="pagina_tasks.html"> <button>My Tasks</button> </a>
+<br> <br>
 <a href="pagina_files.html"> <button>My Files</button> </a>
 </body>
 

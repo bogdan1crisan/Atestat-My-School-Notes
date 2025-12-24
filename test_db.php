@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-$servername = "localhost:3306";
+$servername = "localhost";
 $username = "acrisan2";
 $password = "40671";
 $dbname = "acrisan2";
