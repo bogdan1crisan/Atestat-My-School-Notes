@@ -104,3 +104,26 @@
 
     fileInput.value = '';
   }
+
+  async function deleteFile(id, fileBox) {
+    try {
+      const response = await fetch('delete_file.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          'id': id
+        })
+      });
+      const result = await response.text();
+      if (result === "success") {
+        fileBox.remove();
+      } else {
+        console.error('Error deleting file:', result);
+      }
+    } catch (error) {
+      console.error('Error deleting file:', error);
+    }
+    location.reload();
+  }

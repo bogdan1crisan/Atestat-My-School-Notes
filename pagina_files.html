@@ -9,15 +9,14 @@
   <script src="./script.js"> </script>
 </head>
 
+<body onload="loadFiles()">
 <ul>
   <li><a href="meniu.html">Home</a></li>
   <li><a href="pagina_tasks.html">My Tasks</a></li>
   <li><a href="pagina_files.html" class="active">My Files</a></li>
 </ul>
 
-<header> <h2>MY FILES</h2> </header>
-
-<body onload="loadFiles()">
+<h2>MY FILES</h2>
     <div class="element">
         <h2>Upload a file</h2>
         <input id="fileInput" type="file" onchange="addFile()">

@@ -27,11 +27,18 @@ if ($result->num_rows > 0) {
 }
 
 foreach ($files as $file) {
-    echo "<div class='note'><a href='{$file['path']}' target='_blank'>Fișier: {$file['name']}</a>";
+    echo "<div class='note'>";
+    echo "<div style='margin-top: 10px;'>";
+    echo "<a href='{$file['path']}' target='_blank'>{$file['name']}</a>";
     if (preg_match('/\.(jpg|jpeg|png|gif)$/i', $file['name'])) {
-        echo "<img src='{$file['path']}' style='max-width: 150px; display: block; margin-top: 5px;'>";
+        echo "<img src='{$file['path']}' style='width: 140px; height: 140px; object-fit: cover; display: block; margin-top: 10px; margin-bottom: 10px;'>";
     }
-    echo "<a href='{$file['path']}' download='{$file['name']}' style='display: block; margin-top: 5px;'>Descarcă</a></div>";
+    echo "</div>";
+    echo "<div style='display: flex; gap: 15px;'>";
+    echo "<a href='{$file['path']}' download='{$file['name']}'><button>Download</button></a>";
+    echo "<button onclick=\"deleteFile({$file['id']}, this.closest('.note'))\">Delete</button>";
+    echo "</div>";
+    echo "</div>";
 }
 
 $conn->close();
