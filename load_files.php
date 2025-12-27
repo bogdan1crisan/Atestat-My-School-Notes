@@ -28,10 +28,10 @@ if ($result->num_rows > 0) {
 
 foreach ($files as $file) {
     echo "<div class='note'>";
-    echo "<div style='margin-top: 10px;'>";
+    echo "<div style='margin-top: 10px; margin-bottom: 10px;'>";
     echo "<a href='{$file['path']}' target='_blank'>{$file['name']}</a>";
     if (preg_match('/\.(jpg|jpeg|png|gif)$/i', $file['name'])) {
-        echo "<img src='{$file['path']}' style='width: 140px; height: 140px; object-fit: cover; display: block; margin-top: 10px; margin-bottom: 10px;'>";
+        echo "<img src='{$file['path']}' style='width: 140px; height: 140px; object-fit: cover; display: block; margin-top: 10px;'>";
     }
     echo "</div>";
     echo "<div style='display: flex; gap: 15px;'>";
